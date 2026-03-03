@@ -1,0 +1,304 @@
+/* Core Layout & Background */
+.auth-wrapper {
+  min-height: 100vh;
+  /* Ensure a completely pure white background wrapper */
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Base Card Styling (Standard Login) */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  border-radius: 8px; /* Slightly less rounded */
+  border: 1px solid #F47920; /* Thinner border for cleaner look */
+  padding: 50px 45px 50px; 
+  width: 100%;
+  max-width: 440px; 
+  /* Reduced shadow for a flat design feel */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+  text-align: center;
+}
+
+/* Wide Registration Card Styling */
+.auth-card-wide {
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #F47920; 
+  width: 100%;
+  max-width: 850px;
+  min-height: 520px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  overflow: hidden;
+}
+
+/* Registration Left Side */
+.auth-brand-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+  /* Removed any background color here so it inherits pure white */
+  background-color: transparent; 
+}
+
+.auth-brand-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* The divider overlay for the registration card */
+.divider-element {
+    position: absolute;
+    right: -100px;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    /* Very faint orange for the slice effect */
+    background-color: #FFF2E8; 
+    transform: skewX(-10deg);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Registration Right Side */
+.auth-form-side {
+  flex: 1.1; /* slightly wider form area */
+  padding: 40px 50px;
+  /* Pure white */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* -------------------------------------- */
+/* Headings & Typography */
+/* -------------------------------------- */
+.auth-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.auth-logo {
+  width: 160px;
+  height: auto;
+}
+
+.auth-logo-large {
+    width: 200px;
+    height: auto;
+    margin-bottom: 12px;
+}
+
+.system-title {
+  color: #1C6BB0;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 2px;
+  letter-spacing: 0.2px;
+}
+
+/* Overriding system title color for register left-side */
+.auth-brand-content .system-title {
+     color: #F47920;
+}
+
+.secure-title {
+  color: #F47920;
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 24px;
+}
+
+/* Overriding secure title color for register left-side */
+.auth-brand-content .secure-title {
+    color: #1C6BB0;
+    font-size: 28px;
+    margin: 0 0 16px;
+}
+
+/* -------------------------------------- */
+/* Forms & Inputs */
+/* -------------------------------------- */
+.auth-form {
+  text-align: left;
+}
+
+.auth-form-side .auth-form {
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 14px;
+}
+
+.input-group label {
+  display: block;
+  color: #1C6BB0; 
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.auth-form-side .input-group label {
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.half-width {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Core input styles */
+.auth-input, .auth-input-small {
+  width: 100%;
+  border: 1px solid #F47920; /* Thinner borders */
+  color: #444;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  background-color: #fff;
+}
+
+/* Sizing for Login inputs */
+.auth-input {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+/* Sizing for Registration inputs */
+.auth-input-small {
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.auth-input::placeholder, .auth-input-small::placeholder {
+    color: #bbb;
+}
+
+/* The styled select dropdowns */
+.select-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F47920' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 14px;
+    padding-right: 28px;
+    color: #bbb;
+    cursor: pointer;
+}
+
+/* Password eye positioning */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pw-input {
+  margin-bottom: 0;
+  padding-right: 36px;
+}
+
+.eye-icon-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.error-text {
+  color: #d32f2f;
+  font-size: 12px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+/* -------------------------------------- */
+/* Buttons & Links */
+/* -------------------------------------- */
+.login-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #F47920;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+}
+
+.mt-auto {
+    margin-top: 16px;
+}
+
+/* Link structures */
+.register-link {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #555;
+}
+
+.register-link span {
+  color: #1C6BB0; 
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-link-below {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #555;
+}
+
+.register-link-below span {
+  color: #1C6BB0; 
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.timeout-warning {
+  font-size: 10px;
+  color: #999;
+  margin-top: 6px;
+}

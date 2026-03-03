@@ -1,0 +1,29 @@
+/* Regular Variable Font */
+@font-face {
+  font-family: 'Afacad';
+  src: url('./fonts/Afacad-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; /* Variable fonts support a range of weights */
+  font-style: normal;
+}
+
+/* Italic Variable Font */
+@font-face {
+  font-family: 'Afacad';
+  src: url('./fonts/Afacad-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Afacad', sans-serif; /* This applies your new font globally */
+  background-color: #f4f7f6; 
+  width: 100vw;
+  height: 100vh;
+}

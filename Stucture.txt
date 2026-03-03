@@ -1,0 +1,25 @@
+CMS_Project/
+├── backend/                   # Python (FastAPI or Flask)
+│   ├── app/
+│   │   ├── api/               # Routes for primary and secondary DB checks
+│   │   ├── database.py        # PostgreSQL connection logic
+│   │   └── main.py            # Backend entry point
+│   ├── venv/                  # Python virtual environment
+│   └── requirements.txt       # Dependencies
+├── frontend/                  # React
+│   ├── public/                
+│   │   └── index.html         # Absolutely NO external CDN links here
+│   └── src/
+│       ├── assets/            
+│       │   ├── images/        
+│       │   └── logos/         
+│       ├── fonts/             # Local offline fonts go here
+│       ├── icons/             # Local SVG icons go here
+│       ├── components/        # Reusable UI elements
+│       ├── pages/             
+│       │   └── Auth/          # Login and Register pages (from your Figma)
+│       ├── App.js
+│       └── index.css
+└── database/                  # SQL dumps and setup scripts
+    ├── primary_dummy.sql      # Schema for Primary API data
+    └── secondary_dummy.sql    # Schema for Secondary data

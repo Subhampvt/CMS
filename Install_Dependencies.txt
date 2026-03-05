@@ -1,0 +1,36 @@
+=============================================================
+ISRO CMS - DEPENDENCY INSTALLATION GUIDE
+=============================================================
+If you have just cloned this repository, run the following 
+commands to install all required dependencies for both the 
+Frontend and Backend.
+
+-------------------------------------------------
+PART 1: BACKEND (PYTHON / FASTAPI)
+-------------------------------------------------
+1. Open a terminal and navigate to the backend folder:
+   cd backend
+
+2. Create a virtual environment (if you don't have one):
+   python -m venv venv
+
+3. Activate the virtual environment:
+   Windows: .\venv\Scripts\activate
+   Mac/Linux: source venv/bin/activate
+
+4. Install all Python packages:
+   pip install fastapi uvicorn sqlalchemy psycopg2-binary pydantic
+
+-------------------------------------------------
+PART 2: FRONTEND (REACT / VITE)
+-------------------------------------------------
+1. Open a terminal and navigate to the frontend folder:
+   cd frontend
+
+2. Install all Node.js packages:
+   npm install
+
+-------------------------------------------------
+YOU ARE READY! 
+See Developer_Guide.txt for instructions on how to start the servers.
+=============================================================

@@ -7,21 +7,35 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* This stops the scrollbars! */
   padding: 20px;
+}
+
+/* 🚀 FIXED: Watermark Background Logo Styling */
+.auth-bg-watermark {
+  position: absolute; /* Binds it to the auth-wrapper */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;  /* Takes up most of the screen width... */
+  height: 100vw; /* ...and most of the screen height */
+  object-fit: contain; /* MAGIC LINE: Forces the whole image to fit without stretching or overflowing */
+  opacity: 0.10; 
+  z-index: 0; 
+  pointer-events: none; 
 }
 
 /* Base Card Styling (Standard Login) */
 .auth-card {
   position: relative;
-  z-index: 1;
+  z-index: 10; /* Keeps it on top of the watermark */
   background-color: #ffffff;
   border-radius: 8px; /* Slightly less rounded */
   border: 1px solid #F47920; /* Thinner border for cleaner look */
-  padding: 50px 45px 50px; 
+  padding: 30px 25px; 
   width: 100%;
-  max-width: 440px; 
-  /* Reduced shadow for a flat design feel */
+  max-width: 400px;
+  height: fit-content; 
   box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
   text-align: center;
 }
@@ -29,13 +43,13 @@
 /* Wide Registration Card Styling */
 .auth-card-wide {
   position: relative;
-  z-index: 1;
+  z-index: 10; /* Keeps it on top of the watermark */
   background-color: #ffffff;
   border-radius: 8px;
   border: 1px solid #F47920; 
   width: 100%;
   max-width: 850px;
-  min-height: 520px;
+  min-height: 420px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   display: flex;
   overflow: hidden;
@@ -93,11 +107,11 @@
 .auth-header {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .auth-logo {
-  width: 160px;
+  width: 130px;
   height: auto;
 }
 
@@ -122,9 +136,9 @@
 
 .secure-title {
   color: #F47920;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
-  margin: 0 0 24px;
+  margin: 0 0 16px;
 }
 
 /* Overriding secure title color for register left-side */
@@ -146,7 +160,7 @@
 }
 
 .input-group {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .input-group label {
@@ -186,7 +200,7 @@
 
 /* Sizing for Login inputs */
 .auth-input {
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 6px;
   font-size: 13px;
   margin-bottom: 4px;
@@ -202,18 +216,6 @@
 
 .auth-input::placeholder, .auth-input-small::placeholder {
     color: #bbb;
-}
-
-/* The styled select dropdowns */
-.select-input {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F47920' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    background-size: 14px;
-    padding-right: 28px;
-    color: #bbb;
-    cursor: pointer;
 }
 
 /* Password eye positioning */
@@ -246,6 +248,101 @@
   font-size: 12px;
   margin-top: 6px;
   margin-bottom: 0;
+}
+
+/* -------------------------------------- */
+/* Custom Select Dropdown Styles */
+/* -------------------------------------- */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #F47920; 
+  border-radius: 4px; 
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-user-select: none; /* Safari Fix */
+  user-select: none;
+  font-family: inherit;
+  font-size: 12px; 
+  color: #bbb; 
+  box-sizing: border-box;
+}
+
+.custom-select-trigger span {
+  flex-grow: 1;
+  text-align: center; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Style for when a value is selected */
+.custom-select-trigger.has-value {
+    color: #444; 
+}
+
+.custom-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #F47920;
+  border-top: none;
+  border-radius: 0 0 4px 4px; 
+  margin-top: 0px; 
+  padding: 0;
+  list-style: none;
+  z-index: 100;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  /* Scrollable setup */
+  max-height: 160px; /* Shows about 4-5 options before scrolling */
+  overflow-y: auto; 
+}
+
+/* Custom Scrollbar for the Dropdown */
+.custom-select-options::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-select-options::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 0 0 4px 0;
+}
+.custom-select-options::-webkit-scrollbar-thumb {
+  background: #F47920; 
+  border-radius: 4px;
+}
+.custom-select-options::-webkit-scrollbar-thumb:hover {
+  background: #d96617; 
+}
+
+/* Style each individual option */
+.custom-select-option {
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #444;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.custom-select-option.placeholder-option {
+    color: #bbb;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Modern blue ISRO hover effect */
+.custom-select-option:hover {
+  background-color: #1C6BB0; 
+  color: white;
 }
 
 /* -------------------------------------- */

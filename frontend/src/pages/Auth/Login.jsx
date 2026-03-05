@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import isroLogo from '../../assets/logos/isro-logo.png';
+import isroBg from '../../assets/logos/isro-bglogo.png';
 import './Auth.css';
 
 // SVG Icons for password toggle
@@ -20,14 +21,14 @@ const EyeIcon = () => (
   </svg>
 );
 
-export default function LoginPage({ onNavigate }) {
+export default function Login({ onNavigate }) {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword]     = useState("");
   const [showPwd, setShowPwd]       = useState(false);
   const [loading, setLoading]       = useState(false);
   const [error, setError]           = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!identifier || !password) {
       setError("Please fill in all fields.");
@@ -35,24 +36,58 @@ export default function LoginPage({ onNavigate }) {
     }
     setError("");
     setLoading(true);
+    
+    try {
+      // 🚀 REAL API CALL to your Python Backend
+      const response = await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          trid: identifier, // Backend uses 'trid' for both ID and Email check
+          password: password
+        }),
+      });
 
-    // Simulate API call - NOTE: identifier here is case-sensitive as typed
-    setTimeout(() => {
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Login successful:", data);
+        // Store user info in browser so Dashboard knows who logged in
+        localStorage.setItem("user", JSON.stringify(data.user)); 
+        
+        // Move to dashboard
+        onNavigate('dashboard'); 
+      } else {
+        setError(data.detail || "Invalid TR ID/Email or Password");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Connection error. Is the backend running?");
+    } finally {
       setLoading(false);
-      console.log("Login attempted with (case-sensitive):", identifier);
-      // Future API connection
-    }, 1500);
+    }
   };
 
   return (
     <div className="auth-wrapper">
 
-      {/* Clean Login Card Layout */}
+      {/* 🚀 FIXED: Full page background watermark logo */}
+      <img src={isroBg} alt="" className="auth-bg-watermark" />
+
+      {/* Decorative blue squares - matching Figma */}
+      <div className="decor-square sq-1" />
+      <div className="decor-square sq-2" />
+      <div className="decor-square sq-3" />
+      <div className="decor-square sq-4" />
+
+      {/* Login Card */}
       <div className="auth-card">
 
-        {/* ISRO Logo */}
+        {/* ISRO Logo - large */}
         <div className="auth-header">
-          <img src={isroLogo} alt="ISRO Logo" className="auth-logo" />
+          <img src={isroLogo} alt="ISRO" className="auth-logo" />
         </div>
 
         {/* Titles */}
@@ -73,8 +108,8 @@ export default function LoginPage({ onNavigate }) {
             />
           </div>
 
-          <div className="input-group" style={{ marginTop: '18px' }}>
-             <label>Enter Your Password</label>
+          <div className="input-group">
+             <label style={{ marginTop: 22 }}>Enter Your Password</label>
              <div className="password-wrapper">
                <input
                  type={showPwd ? "text" : "password"}

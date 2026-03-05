@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import isroLogo from '../../assets/logos/isro-logo.png';
+import isroBg from '../../assets/logos/isro-bglogo.png'; // 🚀 ADDED: Import the background logo
 import './Auth.css';
 
 // SVG Icons for password toggle
@@ -19,6 +20,55 @@ const EyeIcon = () => (
     <circle cx="12" cy="12" r="3"/>
   </svg>
 );
+
+// Custom Select Component
+const CustomSelect = ({ name, value, onChange, options, placeholder }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSelect = (optionValue) => {
+    onChange({ target: { name, value: optionValue } });
+    setIsOpen(false);
+  };
+
+  return (
+    <div 
+      className="custom-select-wrapper" 
+      tabIndex={0} 
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setIsOpen(false);
+        }
+      }}
+    >
+      <div 
+        className={`custom-select-trigger ${value ? 'has-value' : ''}`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span>{value ? options.find(o => o.value === value)?.label : placeholder}</span>
+        <svg style={{ flexShrink: 0 }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F47920" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      
+      {isOpen && (
+        <ul className="custom-select-options">
+          <li className="custom-select-option placeholder-option" onClick={() => handleSelect("")}>
+            {placeholder}
+          </li>
+          {options.map((opt) => (
+            <li 
+              key={opt.value} 
+              className="custom-select-option"
+              onClick={() => handleSelect(opt.value)}
+            >
+              {opt.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 export default function Register({ onNavigate }) {
   const [formData, setFormData] = useState({
@@ -40,7 +90,7 @@ export default function Register({ onNavigate }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     // Basic validation
@@ -57,16 +107,38 @@ export default function Register({ onNavigate }) {
     setError("");
     setLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Success:", data);
+        alert("Registration Successful!");
+        onNavigate('login'); 
+      } else {
+        setError(data.detail || "Registration failed.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Cannot connect to server. Is the backend running?");
+    } finally {
       setLoading(false);
-      console.log("Registering new user:", formData);
-      // Future connection to Primary API Check
-    }, 1500);
+    }
   };
 
   return (
     <div className="auth-wrapper">
+      
+      {/* 🚀 ADDED: Watermark Logo and Decorative Squares */}
+      <img src={isroBg} alt="" className="auth-bg-watermark" />
+
 
       <div className="auth-card-wide">
 
@@ -82,8 +154,6 @@ export default function Register({ onNavigate }) {
                 </p>
             </div>
 
-             {/* Diagonal divider element */}
-            <div className="divider-element"></div>
         </div>
 
         {/* Right Side: Form */}
@@ -123,24 +193,43 @@ export default function Register({ onNavigate }) {
               />
             </div>
 
-            {/* Department and Role Row */}
+            {/* Department and Role Row using Custom Dropdowns */}
             <div className="form-row">
                 <div className="input-group half-width">
                   <label>Department</label>
-                  <select name="department" onChange={handleChange} className="auth-input-small select-input">
-                    <option value="">Select Dept</option>
-                    <option value="dept1">Department 1</option>
-                    <option value="dept2">Department 2</option>
-                  </select>
+                  <CustomSelect 
+                    name="department"
+                    value={formData.department}
+                    onChange={handleChange}
+                    placeholder="Select Dept"
+                    options={[
+                      { value: 'dept1', label: 'Department 1' },
+                      { value: 'dept2', label: 'Department 2' },
+                      { value: 'dept3', label: 'Department 3' },
+                      { value: 'dept4', label: 'Department 4' },
+                      { value: 'dept5', label: 'Department 5' },
+                      { value: 'dept6', label: 'Department 6' },
+                      { value: 'dept7', label: 'Department 7' },
+                      { value: 'dept8', label: 'Department 8' },
+                      { value: 'dept9', label: 'Department 9' },
+                      { value: 'dept10', label: 'Department 10' },
+                    ]}
+                  />
                 </div>
 
                 <div className="input-group half-width">
                   <label>Role</label>
-                  <select name="role" onChange={handleChange} className="auth-input-small select-input">
-                    <option value="">Select Role</option>
-                    <option value="user">User</option>
-                    <option value="cmb">CMB Member</option>
-                  </select>
+                  <CustomSelect 
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    placeholder="Select Role"
+                    options={[
+                      { value: 'user', label: 'User' },
+                      { value: 'cmb', label: 'CMB Member' },
+                      { value: 'chefcmb', label: 'Chief CMB' }
+                    ]}
+                  />
                 </div>
             </div>
 

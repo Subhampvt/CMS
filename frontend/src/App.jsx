@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 // Updated paths to match your actual folder structure
 import Login from './pages/Auth/Login'; 
 import Register from './pages/Auth/Register';
-// 🚀 ADDED: Import the Navbar component
+// 🚀 ADDED: Import the Navbar and Dashboard components
 import Navbar from './components/Navbar'; 
+import Dashboard from './pages/Dashboard';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('login');
@@ -31,14 +32,18 @@ function App() {
             {/* The Navbar stays at the top of the screen */}
             <Navbar currentView={currentPage} onNavigate={navigateTo} />
             
-            {/* Main Page Content goes here */}
-            <div style={{ padding: '40px', textAlign: 'center' }}>
-              <h2 style={{ color: '#F47920', marginTop: '40px' }}>Configuration Management System</h2>
-              <h1 style={{ color: '#1C6BB0', textTransform: 'capitalize' }}>
-                Secure {currentPage.replace(/([A-Z])/g, ' $1').trim()}
-              </h1>
-              <p>You have successfully authenticated.</p>
-            </div>
+            {/* 🚀 CHANGED: Render the Dashboard component, or a placeholder for other pages */}
+            {currentPage === 'dashboard' ? (
+               <Dashboard />
+            ) : (
+               <div style={{ padding: '40px', textAlign: 'center' }}>
+                 <h2 style={{ color: '#F47920', marginTop: '40px' }}>Configuration Management System</h2>
+                 <h1 style={{ color: '#1C6BB0', textTransform: 'capitalize' }}>
+                   Secure {currentPage.replace(/([A-Z])/g, ' $1').trim()}
+                 </h1>
+                 <p>Component under construction. We will build this next!</p>
+               </div>
+            )}
           </div>
         );
       default:

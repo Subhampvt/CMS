@@ -44,3 +44,24 @@ If the database is empty, you cannot log in.
 3. Click "Try it out" -> "Execute".
 4. Check Credentials.txt for the standard login IDs and passwords.
 =============================================================
+
+STEP 5: IMPORTING THE DATABASE BACKUPS (If applicable)
+----------------------------------------
+If the repository includes database backup files (.sql) in the 
+"database_backups" folder, follow these steps to import them so 
+you have the exact same data as the rest of the team.
+
+METHOD A: Using pgAdmin 4 (Recommended)
+1. Ensure you have already created the empty databases (Step 1).
+2. Right-click on "primary_db" and select "Restore...".
+3. In the popup, click the folder icon next to "Filename".
+4. Navigate to the "database_backups" folder and select "primary_db_backup.sql".
+   (Note: You may need to change the file format dropdown in the file explorer to "All Files" to see the .sql file).
+5. Click the "Restore" button.
+6. Repeat this process for "secondary_cms_db" using "secondary_cms_db_backup.sql".
+
+METHOD B: Using Terminal (psql)
+If you prefer the command line, open a terminal in the "database_backups" folder and run:
+   psql -U postgres -d primary_db -f primary_db_backup.sql
+   psql -U postgres -d secondary_cms_db -f secondary_cms_db_backup.sql
+   (Replace 'postgres' with your PostgreSQL username if it differs).

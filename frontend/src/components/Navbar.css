@@ -1,90 +1,98 @@
 /* Navbar.css */
 .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background-color: #ffffff;
-    border-bottom: 2px solid #eaeaea; /* Light grey bottom border */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #eaeaea; /* Light grey bottom border */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
   
-  /* Left side: Brand */
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+  /* 🚀 THE FIX: Lock the Navbar to the top of the screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
   
-  .navbar-logo {
-    height: 40px;
-    width: auto;
-  }
+/* Left side: Brand */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
   
-  .navbar-title {
-    display: flex;
-    flex-direction: column;
-  }
+.navbar-logo {
+  height: 40px;
+  width: auto;
+}
   
-  .navbar-title span {
-    color: #1C6BB0;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 1.2;
-  }
+.navbar-title {
+  display: flex;
+  flex-direction: column;
+}
   
-  /* Center: Navigation Links */
-  .navbar-links {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-  }
+.navbar-title span {
+  color: #1C6BB0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+}
   
-  .nav-link {
-    color: #F47920; /* ISRO Orange */
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    padding-bottom: 5px;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-  }
+/* Center: Navigation Links */
+.navbar-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
   
-  .nav-link:hover {
-    opacity: 0.8;
-  }
+.nav-link {
+  color: #F47920; /* ISRO Orange */
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
   
-  /* The active page has an orange underline */
-  .nav-link.active {
-    border-bottom: 2px solid #F47920;
-  }
+.nav-link:hover {
+  opacity: 0.8;
+}
   
-  /* Right side: User Profile & Logout */
-  .navbar-profile {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+/* The active page has an orange underline */
+.nav-link.active {
+  border-bottom: 2px solid #F47920;
+}
   
-  .profile-info {
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    color: #777; /* Subtle grey */
-    font-size: 12px;
-  }
+/* Right side: User Profile & Logout */
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
   
-  .logout-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    transition: transform 0.2s ease;
-  }
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: #777; /* Subtle grey */
+  font-size: 12px;
+}
   
-  .logout-btn:hover {
-    transform: scale(1.1);
-  }
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: transform 0.2s ease;
+}
+  
+.logout-btn:hover {
+  transform: scale(1.1);
+}

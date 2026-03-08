@@ -1,0 +1,96 @@
+/* src/pages/Repository/Repository.css */
+.repository-page {
+    padding: 30px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(100vh - 75px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .page-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: #F47920; /* ISRO Orange */
+    margin-bottom: 25px;
+    flex-shrink: 0;
+  }
+  
+  /* The main container holding all 3 columns */
+  .columns-container {
+    display: flex;
+    gap: 30px;
+    flex-grow: 1;
+    min-height: 0; /* Allows inner scrolling */
+    border: 2px solid #1C6BB0; /* Blue border */
+    border-radius: 20px;
+    padding: 30px;
+    background-color: #F0F8F8; /* Very light blue background */
+  }
+  
+  /* Individual Column */
+  .repo-column {
+    flex: 1;
+    background-color: #ffffff;
+    border: 2px solid #1C6BB0;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  }
+  
+  .column-header {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 800;
+    color: #F47920;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+  
+  /* Scrollable list inside each column */
+  .folder-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    padding: 0 20px;
+    flex-grow: 1;
+  }
+  
+  /* Individual Folder Button */
+  .folder-item {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    flex-shrink: 0;
+  }
+  
+  .folder-item:hover {
+    background-color: #e6e6e6;
+    transform: translateY(-1px);
+  }
+  
+  .folder-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+  }
+  
+  .folder-icon {
+    fill: #333;
+    transition: fill 0.2s ease;
+  }
+  
+  .folder-item:hover .folder-icon {
+    fill: #000;
+  }

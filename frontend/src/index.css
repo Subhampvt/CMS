@@ -21,9 +21,20 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Afacad', sans-serif; /* This applies your new font globally */
+html, body {
+  font-family: 'Afacad', sans-serif; /* Applies your new font globally */
   background-color: #f4f7f6; 
-  width: 100vw;
-  height: 100vh;
+  
+  width: 100%; 
+  overflow-x: hidden; 
+  min-height: 100vh; 
+
+  /* 🚀 THE FIX: Hide vertical scrollbar completely for Firefox, IE, and Edge */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+/* 🚀 THE FIX: Hide vertical scrollbar completely for Chrome, Safari, and Brave */
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;
 }

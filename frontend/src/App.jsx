@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-// Updated paths to match your actual folder structure
 import Login from './pages/Auth/Login'; 
 import Register from './pages/Auth/Register';
-// 🚀 ADDED: Import the Navbar and Dashboard components
 import Navbar from './components/Navbar'; 
 import Dashboard from './pages/Dashboard';
+
+// 🚀 CORRECTED: Pointing directly to the files in the pages folder
+import TrackFiles from './pages/TrackFiles'; 
+import Repository from './pages/Repository'; 
 
 function App() {
   const [currentPage, setCurrentPage] = useState('login');
@@ -20,7 +22,7 @@ function App() {
       case 'register':
         return <Register onNavigate={navigateTo} />;
       
-      // 🚀 ADDED: Group all authenticated routes here
+      // Group all authenticated routes here
       case 'dashboard':
       case 'repository':
       case 'trackFiles':
@@ -28,13 +30,18 @@ function App() {
       case 'chefCmbPanel':
       case 'cmbPanel':
         return (
-          <div className="main-layout" style={{ backgroundColor: '#f9f9f9', minHeight: '100vh', width: '100vw' }}>
+          // RESTORED LAYOUT FIX: Swapped 100vw for 100% and added paddingTop for the fixed navbar
+          <div className="main-layout" style={{ backgroundColor: '#f9f9f9', minHeight: '100vh', width: '100%', paddingTop: '75px' }}>
             {/* The Navbar stays at the top of the screen */}
             <Navbar currentView={currentPage} onNavigate={navigateTo} />
             
-            {/* 🚀 CHANGED: Render the Dashboard component, or a placeholder for other pages */}
+            {/* 🚀 CHANGED: Added the logic to render Repository and TrackFiles */}
             {currentPage === 'dashboard' ? (
                <Dashboard />
+            ) : currentPage === 'trackFiles' ? (
+               <TrackFiles />
+            ) : currentPage === 'repository' ? (
+               <Repository />
             ) : (
                <div style={{ padding: '40px', textAlign: 'center' }}>
                  <h2 style={{ color: '#F47920', marginTop: '40px' }}>Configuration Management System</h2>

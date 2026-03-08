@@ -1,0 +1,129 @@
+/* src/pages/TrackFiles/TrackFiles.css */
+.track-files-page {
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(100vh - 75px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .page-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 30px;
+    flex-shrink: 0;
+  }
+  
+  /* The light blue background container */
+  .table-container {
+    background-color: #F0F8F8; /* Soft cyan/blue from Figma */
+    border-radius: 20px;
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Allows inner scrolling */
+  }
+  
+  /* Grid layout for the table to keep columns perfectly aligned */
+  .table-grid {
+    display: grid;
+    /* Columns: File Name(2.5x), Repo(1.5x), Icon(auto), CI Id(1x), Version(1x), Status(1x) */
+    grid-template-columns: 2.5fr 1.5fr 50px 1fr 1fr 1fr;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .table-header {
+    color: #777;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Scrollable area for the rows */
+  .table-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between the white rows */
+    padding-right: 10px; /* Space for scrollbar */
+  }
+  
+  /* Clean scrollbar */
+  .table-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .table-body::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Individual white rows */
+  .table-row {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    transition: transform 0.1s ease;
+  }
+  
+  .table-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+  
+  /* Cell contents */
+  .file-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+    color: #000;
+    font-size: 18px;
+  }
+  
+  .repo-cell {
+    font-weight: 500;
+    color: #000;
+    font-size: 16px;
+  }
+  
+  .ci-cell {
+    font-weight: 600;
+    color: #000;
+    font-size: 16px;
+  }
+  
+  .version-cell {
+    font-weight: 600;
+    color: #000;
+    font-size: 16px;
+  }
+  
+  /* Status Colors */
+  .status-cell {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .status-pending { color: #F4B400; } /* Yellow */
+  .status-approved { color: #0F9D58; } /* Green */
+  .status-rejected { color: #DB4437; } /* Red */
+  
+  /* Icons */
+  .row-icon {
+    stroke: #000;
+    stroke-width: 2.5;
+  }
+  
+  .info-icon {
+    stroke: #1C6BB0; /* ISRO Blue */
+    stroke-width: 2.5;
+    cursor: pointer;
+  }
